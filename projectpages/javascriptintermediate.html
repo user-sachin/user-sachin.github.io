@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+        <title>Intermediate</title>
+        
+
+        <h1>FizzBuzz</h1>
+        Count up to: <input type="number" name="countUpTo" id="countUpTo" min="1" max="100"><br>
+        Divide by 3 word: <input type="text" name="divideBy3Word" id="divideBy3Word"><br>        
+        Divide by 5 word: <input type="text" name="divideBy5Word" id="divideBy5Word"><br>
+        <input type = "button" onclick = "getFizzBuzzVariables();" name = "ok" value = "Do fizzbuzz" />
+        <script>
+            function getFizzBuzzVariables() {
+                var countUpTo = document.getElementById("countUpTo").value;
+                var divideBy3Word = document.getElementById("divideBy3Word").value;
+                var divideBy5Word = document.getElementById("divideBy5Word").value;
+                fizzBuzz(countUpTo, divideBy3Word, divideBy5Word);
+            }
+
+            function fizzBuzz(countUpTo, divideBy3Word, divideBy5Word) {
+                for(var i = 1; i <= countUpTo; i++){
+                    function isMultipleOf3(i) {
+                        return i % 3 == 0;
+                    };
+                    function isMultipleOf5(i) {
+                        return i % 5 == 0;
+                    };
+
+                    if(isMultipleOf5(i)&&isMultipleOf3(i)){
+                        document.write("<br>"+divideBy3Word+divideBy5Word);
+                    }
+                    else if(isMultipleOf3(i)){
+                        document.write("<br>"+divideBy3Word);
+                    }
+                    else if(isMultipleOf5(i)){
+                        document.write("<br>"+divideBy5Word);
+                    }
+                    else{
+                        document.write("<br>"+i);
+                    }
+                }
+            }
+        </script>
+
+
+
+
+
+
+        <h1>Iteration4</h1>
+        Start From: <input type="number" name="startFrom" id="startFrom" min="1" max="100"><br>
+        <input type = "button" onclick = "getIteration4Variables();" name = "ok" value = "Do Iteration4" />
+        <script>
+            function getIteration4Variables() {
+                var startFrom = document.getElementById("startFrom").value;
+                document.write("<br>"+startFrom);
+                iteration4(startFrom);
+
+            }
+
+            function iteration4(startFrom) {
+                while(startFrom>1){
+                    //document.write("<br>"+startFrom);
+                    function isDivisibleBy3(startFrom) {
+                        return startFrom % 3 == 0;
+                    };
+
+                    if(startFrom==2){
+                        startFrom = +startFrom-1;
+                        document.write("<br>"+startFrom);
+                    }
+                    else if(isDivisibleBy3(startFrom)){
+                        startFrom = startFrom/3;
+                        document.write("<br>"+startFrom);
+                    }
+                    else{
+                        var tempStartFrom = +startFrom+1;
+
+                        if(isDivisibleBy3(tempStartFrom)){
+                        startFrom = +startFrom+1;
+                        document.write("<br>"+startFrom);
+                        startFrom = +startFrom/3;
+                        document.write("<br>"+startFrom);
+                        }
+                        else{
+                            startFrom = +startFrom-1;
+                            document.write("<br>"+startFrom);
+                            startFrom = +startFrom/3;
+                            document.write("<br>"+startFrom);
+                        }
+                    }
+
+                }
+            }
+        </script>
+
+    <h1>Strings4</h1>
+    Input string: <input type="text" name="inputString" id="inputString"><br>
+    <input type = "button" onclick = "getStrings4Variables();" name = "ok" value = "Do Strings4" />
+    <script>
+        function getStrings4Variables() {
+            var inputString = document.getElementById("inputString").value;
+            document.write("<br>"+inputString);
+            strings4(inputString);
+
+        }
+
+    function strings4(inputString) {
+        document.write("<br>"+inputString.length);
+        var count = 0;
+        for(var i = 0; i < inputString.length; i++){
+            while(i+3<=inputString.length){
+                if(inputString[i]==inputString[i+1]&&inputString[i]==inputString[i+2]){
+                    count = +count+1;
+                }
+                
+            }
+
+            document.write("<br>"+inputString[i]);
+        }
+        document.write("<br> Count: "+count);
+
+        
+    }
+    </script>
+
+
+
+    <h1>DOM1</h1>
+    Input text: <input type="text" name="inputString" id="inputStringDom"><br>
+    <input type = "button" onclick = "getStringVariable();" name = "ok" value = "Add text" />
+    <input type = "button" onclick = "createParagraph();" name = "ok" value = "Create paragraph" />
+    <input type = "button" onclick = "deleteParagraph();" name = "ok" value = "Delete paragraph" />
+    <script>
+        function getStringVariable() {
+            var inputStringDom = document.getElementById("inputStringDom").value;
+            addText(inputStringDom);
+
+        }
+
+        function createParagraph() {
+
+            var element =  document.getElementById('paragraph1');
+            if (typeof(element) != 'undefined' && element != null)
+            {
+            // exists.
+            }
+            else{
+            var paragraph = document.createElement("PARAGRAPH");
+            paragraph.setAttribute("id", "paragraph1");
+            var text = document.createTextNode("Paragraph text...");
+            paragraph.appendChild(text);
+            document.body.appendChild(paragraph);
+            }
+            
+        }
+
+        function addText(inputStringDom) {
+            document.getElementById("paragraph1").innerHTML = inputStringDom;
+        }
+
+        
+        function deleteParagraph() {
+            var para = document.getElementById("paragraph1");
+            para.parentNode.removeChild(para);
+        }
+
+    </script>
+
+
+   </head>
+
+   <body>
+   </body>
+
+</html>

@@ -1,0 +1,155 @@
+<html>
+
+<body>
+
+
+    <br>
+    <h1> Task 1 </h1>
+    Input text: <input type="text" name="task1Text" id="task1Text"><br>
+    <input type="button" onclick="getStringVariableFunction1();" name="ok" value="doubleChar" />
+    <script type="text/javascript">
+        function getStringVariableFunction1() {
+            var task1Text = document.getElementById("task1Text").value;
+            console.log(doubleChar(task1Text));
+        }
+        function doubleChar(task1Text) {
+            let newString = "";
+            for (let i = 0; i < task1Text.length; i++) {
+                for (let j = 0; j < 2; j++) {
+                    newString = newString + task1Text[i];
+                }
+            }
+            return newString;
+        }
+    </script>
+
+
+
+    <br>
+    <h1> Task 2 </h1>
+    Input text: <input type="text" name="task2Text" id="task2Text"><br>
+    <input type="button" onclick="getStringVariableFunction2();" name="ok" value="getSandwich" />
+    <script type="text/javascript">
+        function getStringVariableFunction2() {
+            let task2Text = document.getElementById("task2Text").value;
+            console.log(getSandwich(task2Text));
+
+        }
+        function getSandwich(task2Text) {
+
+            let split = task2Text.split("bread");
+            console.log(split);
+
+            let inbetween = "";
+            if (split.length >= 3) {
+                for (let i = 1; i < split.length - 1; i++) {
+                    if (i > 1) {
+                        inbetween = inbetween + "bread";
+                    }//ADD ANOTHER BREAD IF A SLICE OF BREAD IS IN BETWEEN THE INNER AND OUTER
+                    inbetween = inbetween + split[i];
+                }
+                return inbetween;
+            }
+        }
+    </script>
+
+    <br>
+    <h1> Task 3 </h1>
+    Input 1st Number: <input type="number" name="task3Number1" id="task3Number1"><br> Input 2nd Number: <input type="number"
+        name="task3Number2" id="task3Number2"><br> Input 3rd Number: <input type="number" name="task3Number3" id="task3Number3"><br>
+    <input type="button" onclick="getStringVariableFunction3();" name="ok" value="evenlySpaced" />
+    <script type="text/javascript">
+        function getStringVariableFunction3() {
+            let task3Number1 = document.getElementById("task3Number1").value;
+            let task3Number2 = document.getElementById("task3Number2").value;
+            let task3Number3 = document.getElementById("task3Number3").value;
+            console.log(evenlySpaced(task3Number1, task3Number2, task3Number3));
+
+        }
+        function evenlySpaced(task3Number1, task3Number2, task3Number3) {
+            let firstDifference = task3Number1 - task3Number2;
+            let secondDifference = task3Number2 - task3Number3;
+
+            if (firstDifference < 0) {
+                firstDifference = firstDifference * (-1);
+            }
+
+            if (secondDifference < 0) {
+                secondDifference = secondDifference * (-1);
+            }
+
+            if (firstDifference == secondDifference) {
+                return true;
+            }
+
+            else {
+                return false;
+            }
+        }
+    </script>
+
+    <br>
+    <h1> Task 5 </h1>
+    Input text: <input type="text" name="task5Text" id="task5Text"><br>
+    <input type="button" onclick="getStringVariableFunction5();" name="ok" value="endsLy" />
+    <script type="text/javascript">
+        function getStringVariableFunction5() {
+            var task5Text = document.getElementById("task5Text").value;
+            console.log(endsLy(task5Text));
+        }
+        function endsLy(task5Text) {
+            if (task5Text.substr(task5Text.length - 2) == "ly") {
+                return true;
+
+            }
+            else {
+                return false;
+            }
+
+        }
+    </script>
+
+
+    <br>
+    <h1> Task 6 </h1>
+    Input text: <input type="text" name="task6Text" id="task6Text"><br>
+    <input type="button" onclick="getStringVariableFunction6();" name="ok" value="stringClean" />
+    <script type="text/javascript">
+        function getStringVariableFunction6() {
+            var task6Text = document.getElementById("task6Text").value;
+            console.log(stringClean(task6Text));
+        }
+        function stringClean(task6Text) {
+            let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+            let newString = "";
+            let previousLetter = 0;
+            for (let i = 0; i < task6Text.length; i++) {
+                if (i == 0) {
+                    newString = newString + task6Text[i];
+                }
+                else {
+                    if (task6Text[i] != task6Text[i - 1]) {
+
+                        for (let count = 0; count < alphabet.length; count++) {
+                            let currentLetter;
+                            if (task6Text[i] == alphabet[count]) {
+                                currentLetter = count;
+                                if (currentLetter > previousLetter) {
+                                    newString = newString + task6Text[i];
+                                }
+                                previousLetter = currentLetter;
+                            }
+
+                        }
+                    }
+                }
+            }
+            return newString;
+
+        }
+    </script>
+
+
+</body>
+
+</html>

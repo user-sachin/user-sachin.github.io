@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>IntermediateJSON2</title>
+
+    Input text: <input type="text" name="inputStringKingz" id="inputStringKingz"><br>
+    <input type="button" onclick="getStringVariable();" name="ok" value="Search kingz" />
+
+
+    <script>
+        let kingzArray = new Array();
+
+
+        let kingzFoundArray = new Array();
+
+        let initialSearch = 0;
+      
+        let requestURL = "https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.json";
+        let request = new XMLHttpRequest();
+        request.open("GET", requestURL);
+        request.responseType = "json";
+        request.send();
+        request.onload = function() {
+            let requestData = request.response;
+            for (let key in requestData) {
+                console.log("King");
+
+                let requestDataKingz = requestData[key];
+                let kingObject = new Array();
+
+                for (let key in requestDataKingz) {
+                    console.log(key + " -> " + requestDataKingz[key]);
+                    kingObject.push(requestDataKingz[key]);
+                }
+                kingzArray.push(kingObject);
+            }
+
+        }
+
+        function getStringVariable() {
+            var para = document.getElementById("\""+initialSearch-1+"\"");
+            //para.parentNode.removeChild(para);
+            var inputStringSearch = document.getElementById("inputStringKingz").value;
+            searchKingz(inputStringSearch);
+        }
+
+        function searchKingz(inputStringSearch) {
+            let newSearch = initialSearch;
+            kingzFoundArray = [];
+
+            for (let i = 0; i < kingzArray.length; i++) {
+                //alert(kingzArray.length);
+                var stringJoined = kingzArray[i].join();
+                var n = stringJoined.includes(inputStringSearch);
+                //alert(stringJoined);
+
+                if (stringJoined.toLowerCase().includes(inputStringSearch)) {
+                    kingzFoundArray.push(i);
+                    //alert(kingzFoundArray.length);
+                }
+            }
+
+
+            
+            for (let i = 0; i < kingzFoundArray.length; i++) {
+                //alert("found");
+                for (let j = 0; j < kingzArray.length; j++) {
+                    if (kingzFoundArray[i] === j) {
+                        //alert(kingzArray[j]);
+                        var king =  kingzArray[j];
+
+
+                        for (let k = 0; k < king.length; k++) {
+                            var paragraph = document.createElement("PARAGRAPH");
+                            paragraph.setAttribute("id", "\""+initialSearch+"\"");
+                            var text = document.createTextNode(king[k]);
+                            paragraph.appendChild(document.createElement("br"));
+                            paragraph.appendChild(text);
+                            document.body.appendChild(paragraph);
+                        }
+
+                            paragraph.appendChild(document.createElement("br"));
+                            document.body.appendChild(paragraph);
+
+                       
+                }
+
+                }
+              
+            }
+
+            initialSearch =+ 1;
+        }
+    </script>
+
+
+</head>
+
+<body>
+</body>
+
+</html>

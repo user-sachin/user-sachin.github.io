@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+        <title>IntermediateJSON</title>
+        
+
+        <script>
+        let requestURL = "https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json";
+        let request = new XMLHttpRequest();
+        request.open("GET", requestURL);
+        request.responseType = "json";
+        request.send();
+        request.onload = function() {
+            let requestData = request.response;
+
+            for (let key in requestData) {
+                if (requestData.hasOwnProperty(key)) {
+
+                    if(key==="members"){
+                        let requestDataMembers = requestData[key];
+
+                        for (let key in requestDataMembers) {
+
+                            if (requestDataMembers.hasOwnProperty(key)) {
+                                let requestDataMembers1 = requestDataMembers[key];
+
+                                for (let key in requestDataMembers1) {
+                                    console.log(key + " -> " + requestDataMembers1[key]);
+
+                                }
+
+
+
+                            }
+                        }
+                    }
+                    else{
+                        console.log(key + " -> " + requestData[key]);
+                    }
+                }
+            }
+
+        let myH1 = document.createElement("h1");
+        myH1.textContent = requestData["squadName"];
+        document.getElementsByTagName("body")[0].appendChild(myH1);
+
+        }
+
+   
+        
+        </script>
+
+
+   </head>
+
+   <body>
+   </body>
+
+</html>
